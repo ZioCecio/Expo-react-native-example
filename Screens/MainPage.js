@@ -23,7 +23,6 @@ class MainPage extends React.Component {
   }
 
   viewDetails(article) {
-    console.log(article);
     this.props.navigation.navigate("Detail", { article: article });
   }
 
@@ -39,22 +38,26 @@ class MainPage extends React.Component {
     }
 
     return (
-      <FlatList
-        data={this.state.articles}
-        renderItem={({ item }) => (
-          <Article article={item} viewDetails={this.viewDetails} />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.articles}
+          renderItem={({ item }) => (
+            <Article
+              article={item}
+              viewDetails={article => this.viewDetails(article)}
+            />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center"
   }
 });

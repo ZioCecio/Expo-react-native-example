@@ -5,27 +5,16 @@ import {
   heightPercentageToDP
 } from "react-native-responsive-screen";
 import { Col, Row, Grid } from "react-native-easy-grid";
+import { withNavigation } from "react-navigation";
 
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Button,
-  Icon,
-  Left,
-  Body,
-  Right
-} from "native-base";
+import { Card, CardItem, Button, Icon, Left, Body, Right } from "native-base";
 
-export default class Article extends React.Component {
+class Article extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      article: this.props.navigation.getParam("article")
+      article: this.props.article
     };
   }
 
@@ -63,33 +52,6 @@ export default class Article extends React.Component {
         </CardItem>
       </Card>
     );
-    /*
-    return (
-      <Card style={styles.card}>
-        <CardItem>
-          <Body>
-            <Image
-              source={{
-                uri: article.urlToImage
-              }}
-              style={styles.image}
-            />
-            <Text>{article.title}</Text>
-          </Body>
-        </CardItem>
-        <CardItem>
-          <Left>
-            <Text
-              style={{ color: "#4286f4" }}
-              onPress={() => Linking.openURL(article.url)}
-            >
-              Continua a leggere
-            </Text>
-          </Left>
-        </CardItem>
-      </Card>
-    );
-    */
   }
 }
 
@@ -103,3 +65,5 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+export default withNavigation(Article);
